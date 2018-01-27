@@ -22,17 +22,18 @@
 # You may need to change your csv viewer settings to comma separated only.
 # You may need to change all occurance of '&amp;' to '&' manually.
 
-# Caution : If you are executing for large range then move line 37 after line 34 and delete line 36 to reduce memory usage.
-
 
 echo "Generating csv file to store links...";
 echo "index,Movie Name,Link" >> khatrimaza.csv;
 echo "Fetching and parsing required data...";
-for i in {1040..1100};
+for i in {7530..7545};
 do
     wget --quiet "https://khatrimaza.org/site_$i.xhtml";
-    title=$(cat site_$i.xhtml | grep title | head -n 1 | cut -c 8- | rev | cut -c 111- | rev);
-    echo "$i,$title,https://khatrimaza.org/site_$i.xhtml" >> khatrimaza.csv ;
+    title=$(cat site_$i.xhtml 2>/dev/null 2>/dev/null | grep title | head -n 1 | cut -c 8- | rev | cut -c 111- | rev);
+	if [ "$title" != "" ];
+    then
+	    echo "$i,$title,https://khatrimaza.org/site_$i.xhtml" >> khatrimaza.csv ;	
+    fi
 done;
 echo "removing site files...";
 rm site*;
