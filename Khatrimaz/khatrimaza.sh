@@ -22,6 +22,8 @@
 # You may need to change your csv viewer settings to comma separated only.
 # You may need to change all occurance of '&amp;' to '&' manually.
 
+# Caution : If you are executing for large range then move line 37 after line 34 and delete line 36 to reduce memory usage.
+
 
 echo "Generating csv file to store links...";
 echo "index,Movie Name,Link" >> khatrimaza.csv;
